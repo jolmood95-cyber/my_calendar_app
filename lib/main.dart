@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
@@ -78,7 +77,7 @@ class _CalendarHomeScreenState extends State<CalendarHomeScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '${selectedHijriData.hDay} / ${selectedHijriData.hMonth} / ${selectedHijriData.hYear} هـ',
+                      '${selectedHijriDate.hDay} / ${selectedHijriDate.hMonth} / ${selectedHijriDate.hYear} هـ',
                       style: const TextStyle(fontSize: 22),
                     ),
                   ],
@@ -90,7 +89,7 @@ class _CalendarHomeScreenState extends State<CalendarHomeScreen> {
               onPressed: () {
                 setState(() {
                   selectedGregorianDate = DateTime.now();
-                  selectedHijriData = HijriCalendar.now();
+                  selectedHijriDate = HijriCalendar.now();
                 });
               },
               icon: const Icon(Icons.today),
@@ -107,4 +106,4 @@ class _CalendarHomeScreenState extends State<CalendarHomeScreen> {
     );
   }
 }
-ح
+
