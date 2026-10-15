@@ -24,26 +24,25 @@ jobs:
           flutter-version: '3.19.6'
           channel: 'stable'
 
-      - name: Create full Flutter project structure
+      - name: Create project structure
         run: |
           mkdir -p temp_lib temp_pub
           cp lib/main.dart temp_lib/
           cp pubspec.yaml temp_pub/
-
+          
           flutter create . --org com.ahmad.calendarapp --project-name my_calendar_app --platforms android
-
+          
           cp temp_lib/main.dart lib/
           cp temp_pub/pubspec.yaml ./
 
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build APK Release
-        run: flutter build apk --release
+      - name: Build APK Debug
+        run: flutter build apk --debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
-          
+          path: build/app/outputs/flutter-apk/app-debug.apk
