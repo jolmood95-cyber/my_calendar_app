@@ -24,6 +24,20 @@ jobs:
           flutter-version: '3.19.0'
           channel: 'stable'
 
+      - name: Create full Flutter project structure
+        run: |
+          # حفظ ملفاتنا الحالية في مكان مؤقت
+          mkdir -p temp_lib temp_pub
+          cp lib/main.dart temp_lib/
+          cp pubspec.yaml temp_pub/
+          
+          # إنشاء مشروع فلاتر رسمي جديد بالكامل بكل مجلداته
+          flutter create . --org com.ahmad.calendarapp --project-name my_calendar_app --platforms android,ios,windows
+          
+          # إعادة وضع ملفاتنا المخصصة داخل الهيكل الجديد
+          cp temp_lib/main.dart lib/
+          cp temp_pub/pubspec.yaml ./
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -35,4 +49,3 @@ jobs:
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
-          
